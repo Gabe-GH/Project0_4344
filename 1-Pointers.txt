@@ -11,7 +11,8 @@ int main(int argc, char *argv[])
 }
 
 Why is the above code incorrect (i.e., likely to crash)?
-
+There isn't any memory allocated for the pointer temp. The pointer needs memory reserved
+to hold the c-string 
 
 2) Consider the following C program.
 #include <string.h>
@@ -24,6 +25,10 @@ int main(int argc, char *argv[])
 
 A buffer overflow occurs when the program name is 9 characters long
 (e.g., "12345.exe"). Why?
+Currently the program name is being copied to the char array which has
+9 positions available, including the final index being occupied by the
+end character of strings \0. This causes a program name of 9 characters
+causing an overflow.
 
 
 3) Consider the following C program.
@@ -36,6 +41,9 @@ int main(int argc, char *argv[])
 }
 
 Why does this program crash?
+The string being pointed to by buffer is being stored in read-only memory.
+Trying to modify the string in memory will cause a crash even if it is the correct
+length.
 
 
 4) Consider the following C snippet.
@@ -47,6 +55,9 @@ void myfunc()
 }
 
 Is this correct?  What's a simpler expression for &b[0]?
+Since we're using an array we can just use the expression
+char *buffer = b; because using an array name without index
+will assign the array's memory address of index 0 to the pointer.
 
 
 5) Consider the following C program.
@@ -59,6 +70,7 @@ int main(int argc, char* argv[])
 
 If this code is executed using the following line, what will be the output?
 > program1 -n5 abc
+Output: program1 5 abc
 
 
 6) Consider the following C program.
@@ -77,4 +89,7 @@ int main(int argc, char *argv[])
 }
 
 What's wrong with this?
-
+The function myfunc is returning an array that was allocated
+locally in scope terms. Once the function is exited the memory allocated
+for that array is released. The array will need to be dynamically allocated in
+order to return it to main.
