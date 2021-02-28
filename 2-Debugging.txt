@@ -6,9 +6,22 @@ Understanding the code
   1) Explain why this program uses the exclamation operator with the
      strcmp() function.
 
+     strcmp() returns an integer after comparing the strings provided. If both strings
+     are equal to each other strcmp() returns a 0. Zero is seen as false
+     when evaluated as a boolean. So !strcmp() is used to check if both strings
+     are in fact equal to each other and if !false is evaluated it's actually true.
+
   2) Explain why the 'LENGTH' macro returns the length of an array.
      Would it work with a pointer to a dynamically allocated array? (Hint:
      understand sizeof).
+
+     LENGTH returns the length of the array because it is taking dividing the total number of
+     bytes taken up by the array by the amount of bytes of each element. For example If an int 
+     is 4 bytes and an array of ints returns a sizeof 20 bytes, when divided by the size of 
+     the element (int) we find that the array has 5 elements. 
+     This will not work with a pointer to dynamically allocated because the amount of memory to be
+     allocated needs to be known at runtime to use sizeof(). Since we don't, sizeof() will
+     return the amount of bytes of a pointer which is 8 bytes.
 
 Bug hunting
 
