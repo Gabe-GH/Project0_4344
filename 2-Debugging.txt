@@ -27,9 +27,13 @@ Bug hunting
 
   3) Explain and fix the logical flow bug within the switch statement.
      (What happens when the -h option is used?)
+     The argument -h is passed when executing the program 
+     and a help is message is given for the user.
 
   4) Explain and fix the argument parsing error. (Why is entrycount never
      zero?)
+     Entry count is never zero because entry count is always being incremented
+     due to counting the program name as an argument.
 
   5) Fix print_result() to print results correctly and in the same order
      as the words were specified on the command line.  Explain your solution.

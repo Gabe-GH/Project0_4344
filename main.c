@@ -70,13 +70,14 @@ int process_stream(WordCountEntry entries[], int entry_count)
 void print_result(WordCountEntry entries[], int entry_count)
 {
     /* B5: introduce a temporary variable i and use it to count up from 0 */
+    int i = 0;
 
     /* C2: send output to the right stream, use fprintf */
     printf("Result:\n");
 
     /* B5: fix this*/
     while (entry_count-- > 0) {
-        printf("%s:%d\n", entries->word, entries->counter);
+        printf("%s:%d\n", entries[i].word, entries[i].counter);
     }
 }
 
@@ -110,7 +111,7 @@ int main(int argc, char **argv)
        necessary, thus avoiding extensive modifications to the code below. Hint: use malloc */
 
  /* B4: fix argv */
-
+  argv++; 
   while (*argv != NULL) {
     if (**argv == '-') {
 
@@ -126,7 +127,6 @@ int main(int argc, char **argv)
         default:
           printf("%s: Invalid option %s. Use -h for help.\n",
                  prog_name, *argv);
-          return EXIT_FAILURE;
       }
     } else {
       /* C3: the LENGTH macro will not work anymore, since entries will be a pointer, not an array */
