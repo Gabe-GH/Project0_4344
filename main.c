@@ -121,6 +121,8 @@ int main(int argc, char **argv)
         /* B3: fix the logical flow error in the switch*/
         case 'h':
           printHelp(prog_name);
+          break;
+          
         default:
           printf("%s: Invalid option %s. Use -h for help.\n",
                  prog_name, *argv);
