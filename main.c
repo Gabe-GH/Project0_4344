@@ -126,6 +126,7 @@ int main(int argc, char **argv)
         default:
           printf("%s: Invalid option %s. Use -h for help.\n",
                  prog_name, *argv);
+          return EXIT_FAILURE;
       }
     } else {
       /* C3: the LENGTH macro will not work anymore, since entries will be a pointer, not an array */
