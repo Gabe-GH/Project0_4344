@@ -78,6 +78,7 @@ void print_result(WordCountEntry entries[], int entry_count)
     /* B5: fix this*/
     while (entry_count-- > 0) {
         printf("%s:%d\n", entries[i].word, entries[i].counter);
+        i++;
     }
 }
 
