@@ -41,7 +41,7 @@ int process_stream(WordCountEntry entries[], int entry_count)
   char buffer[30];
 
   /* C4: replace gets with fgets */
-  while (fgets(buffer, LENGTH(buffer), stdin))
+  while (fgets(buffer, sizeof(buffer), stdin))
   {
     if (*buffer == '.')
       break;
