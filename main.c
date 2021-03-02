@@ -121,7 +121,7 @@ int main(int argc, char **argv)
         /* C2: -fFILENAME switch: open FILENAME and set it as the output
              stream */
         case 'f':
-          output = fopen((*(argv+1)) + 2,'w+',stdout);
+          output = fopen((*(argv+1)) + 2,'w');
           break;
         
         /* B3: fix the logical flow error in the switch*/
