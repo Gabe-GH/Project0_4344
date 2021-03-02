@@ -143,7 +143,7 @@ int main(int argc, char **argv)
     argv++;
   }
   if (entryCount == 0) {
-    printf("%s: Please supply at least one word. Use -h for help.\n",
+    fprintf(stderr, "%s: Please supply at least one word. Use -h for help.\n",
            prog_name);
     return EXIT_FAILURE;
   }
