@@ -28,7 +28,8 @@ Bug hunting
   3) Explain and fix the logical flow bug within the switch statement.
      (What happens when the -h option is used?)
      The argument -h is passed when executing the program 
-     and a help is message is given for the user.
+     and a help is message is given for the user, but was not breaking
+     since it was missing the break statement.
 
   4) Explain and fix the argument parsing error. (Why is entrycount never
      zero?)

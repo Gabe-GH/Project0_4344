@@ -95,7 +95,7 @@ int main(int argc, char **argv)
   const char *prog_name = *argv;
 
   /* C3: make entries a pointer instead of an array */
-  WordCountEntry entries[5];
+  WordCountEntry *entries;
   int entryCount = 0;
 
   /* C2: create a variable to store the output stream to use, stdout by default 
@@ -111,7 +111,7 @@ int main(int argc, char **argv)
 
   /* C3: allocate (potentially) a little more memory than strictly
        necessary, thus avoiding extensive modifications to the code below. Hint: use malloc */
-
+  entries = (WordCountEntry*) malloc(argc);
  /* B4: fix argv */
   argv++; 
   while (*argv != NULL) {
@@ -135,7 +135,7 @@ int main(int argc, char **argv)
       }
     } else {
       /* C3: the LENGTH macro will not work anymore, since entries will be a pointer, not an array */
-      if (entryCount < LENGTH(entries)) {
+      if (entryCount < argc-1) {
         entries[entryCount].word = *argv;
         entries[entryCount++].counter = 0;
       }
@@ -159,6 +159,9 @@ int main(int argc, char **argv)
   print_result(entries, entryCount);
 
   // FREE MEMORY, CLOSE FILES, STREAMS, etc.
+
+  fclose(output);
+  free(entries);
 
   return EXIT_SUCCESS;
 }
