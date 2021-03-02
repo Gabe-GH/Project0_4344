@@ -35,14 +35,14 @@ typedef struct {
   int counter;
 } WordCountEntry;
 
-
 int process_stream(WordCountEntry entries[], int entry_count)
 {
   short line_count = 0;
   char buffer[30];
 
   /* C4: replace gets with fgets */
-  while (gets(buffer)) {
+  while (fgets(buffer, LENGTH(buffer), stdin))
+  {
     if (*buffer == '.')
       break;
 
@@ -51,21 +51,25 @@ int process_stream(WordCountEntry entries[], int entry_count)
        tab), as well as the newline character '\n'.  We could also
        trim the buffer to get rid of the newline, instead. 
        strtok returns NULL when no more tokens are available. */
-
+    char *token = strtok(buffer, " ,.-\n");
     /* Compare against each entry. 
     When you implement C5, you won't be able to process the entries directly from the buffer,
     but rather from returned value of strtok. Call "man strtok" in your command line to learn more about strtok*/
     int i = 0;
-    while (i < entry_count) {
-      if (!strcmp(entries[i].word, buffer))
-        entries[i].counter++;
-      i++;
+    while (token != NULL)
+    {
+      while (i < entry_count)
+      {
+        if (!strcmp(entries[i].word, token))
+          entries[i].counter++;
+        i++;
+      }
+      token = strtok(NULL, " ,.-\n");
     }
     line_count++;
   }
   return line_count;
 }
-
 
 void print_result(WordCountEntry entries[], int entry_count)
 {
