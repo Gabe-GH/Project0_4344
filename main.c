@@ -77,7 +77,7 @@ void print_result(WordCountEntry entries[], int entry_count)
 
     /* B5: fix this*/
     while (entry_count-- > 0) {
-        printf("%s:%d\n", entries[i].word, entries[i].counter);
+        fprintf(stdout, "%s:%d\n", entries[i].word, entries[i].counter);
         i++;
     }
 }
@@ -86,7 +86,7 @@ void print_result(WordCountEntry entries[], int entry_count)
 void printHelp(const char *name)
 {
     /* C2: send output to the right stream, use fprintf */
-    fprintf(stderr, "usage: %s [-h] <word1> ... <wordN>\n", name);
+    fprintf( stderr, "usage: %s [-h] <word1> ... <wordN>\n", name);
 }
 
 
@@ -130,7 +130,7 @@ int main(int argc, char **argv)
           break;
           
         default:
-          printf("%s: Invalid option %s. Use -h for help.\n",
+          fprintf(stderr, "%s: Invalid option %s. Use -h for help.\n",
                  prog_name, *argv);
       }
     } else {
