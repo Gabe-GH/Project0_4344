@@ -41,7 +41,7 @@ int process_stream(WordCountEntry entries[], int entry_count)
   char buffer[30];
 
   /* C4: replace gets with fgets */
-  while (fgets(buffer, sizeof(buffer), stdin))
+  while (fgets(buffer, LENGTH(buffer), stdin))
   {
     if (*buffer == '.')
       break;
@@ -55,9 +55,9 @@ int process_stream(WordCountEntry entries[], int entry_count)
     /* Compare against each entry. 
     When you implement C5, you won't be able to process the entries directly from the buffer,
     but rather from returned value of strtok. Call "man strtok" in your command line to learn more about strtok*/
-    int i = 0;
     while (token != NULL)
     {
+      int i = 0;
       while (i < entry_count)
       {
         if (!strcmp(entries[i].word, token))
