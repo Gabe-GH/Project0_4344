@@ -73,7 +73,7 @@ void print_result(WordCountEntry entries[], int entry_count)
     int i = 0;
 
     /* C2: send output to the right stream, use fprintf */
-    printf("Result:\n");
+    fprintf(stdout, "Result:\n");
 
     /* B5: fix this*/
     while (entry_count-- > 0) {
@@ -86,7 +86,7 @@ void print_result(WordCountEntry entries[], int entry_count)
 void printHelp(const char *name)
 {
     /* C2: send output to the right stream, use fprintf */
-    printf("usage: %s [-h] <word1> ... <wordN>\n", name);
+    fprintf(stderr, "usage: %s [-h] <word1> ... <wordN>\n", name);
 }
 
 
@@ -101,6 +101,7 @@ int main(int argc, char **argv)
   /* C2: create a variable to store the output stream to use, stdout by default 
         Hint: use the FILE data type and understand the stdout and stderr output streams*/
   // FILE *output = ?? // Complete this stream variable definition (Note: this will not be a file)
+  FILE *output = stdout;
 
   /* Entry point for the testrunner program */
   if (argc > 1 && !strcmp(argv[1], "-test")) {
@@ -119,7 +120,10 @@ int main(int argc, char **argv)
       switch ((*argv)[1]) {
         /* C2: -fFILENAME switch: open FILENAME and set it as the output
              stream */
-
+        case 'f':
+          freopen((*(argv+1)) + 2,'w+',output);
+          break;
+        
         /* B3: fix the logical flow error in the switch*/
         case 'h':
           printHelp(prog_name);
@@ -146,9 +150,9 @@ int main(int argc, char **argv)
 
   /* C2: send output to the right stream */
   if (entryCount == 1) {
-    printf("Looking for a single word\n");
+    fprintf(output,"Looking for a single word\n");
   } else {
-    printf("Looking for %d words\n", entryCount);
+    fprintf(output,"Looking for %d words\n", entryCount);
   }
 
   process_stream(entries, entryCount);

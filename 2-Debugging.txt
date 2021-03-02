@@ -37,4 +37,6 @@ Bug hunting
 
   5) Fix print_result() to print results correctly and in the same order
      as the words were specified on the command line.  Explain your solution.
-
+     Added a temporary variable, 'i', to act as a counter and fixed the print statments to print 
+     the index i of the arrays with i incrementing after each print while there are still arguments
+     to print.
