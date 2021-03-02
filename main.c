@@ -111,7 +111,7 @@ int main(int argc, char **argv)
 
   /* C3: allocate (potentially) a little more memory than strictly
        necessary, thus avoiding extensive modifications to the code below. Hint: use malloc */
-  entries = malloc(argc);
+  entries = (WordCountEntry*) malloc(argc);
  /* B4: fix argv */
   argv++; 
   while (*argv != NULL) {
